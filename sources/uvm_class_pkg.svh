@@ -10,6 +10,8 @@ package uvm_class_pkg;
     typedef uvm_sequencer #(base_transaction) sequencer;
     typedef uvm_sequencer #(transaction_fast) sequencer_fast;
 
+    `include "uvm_classes/cmdline_processor.sv"
+
     `include "uvm_classes/sequences/base_sequence.sv"
     `include "uvm_classes/sequences/base_sequence_nsel.sv"
     `include "uvm_classes/sequences/run_all_sequences.sv"
