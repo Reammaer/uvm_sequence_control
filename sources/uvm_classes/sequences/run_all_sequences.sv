@@ -22,6 +22,8 @@ function run_all_sequences::new(string name = "run_all_sequences");
 endfunction: new
 
 
+// The *_body() callbacks are designed to be skipped for child sequences,
+// while *_start() callbacks are executed for all sequences
 task run_all_sequences::pre_body();
     base_sequence_h         = base_sequence::type_id::create("base_sequence_h");
     base_sequence_nsel_h    = base_sequence_nsel::type_id::create("base_sequence_nsel_h");
