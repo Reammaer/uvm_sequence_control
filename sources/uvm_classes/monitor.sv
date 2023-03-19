@@ -39,7 +39,9 @@ task monitor::run_phase(uvm_phase phase);
     forever begin
         @(posedge vif.clk);
             if (!vif.i_reset) begin
-                item_h.i_data = vif.i_data;  
+                item_h.i_data_A = vif.i_data_A;  
+                item_h.i_data_B = vif.i_data_B;
+                item_h.i_sel_op = vif.i_sel_op; 
                 @(posedge vif.clk);
                     item_h.o_data = vif.o_data;              
             end      

@@ -5,8 +5,10 @@ module dut_test
     // First interface
     input logic         i_clk
 ,   input logic         i_reset
-,   input logic [7:0]   i_data
-,   output logic [7:0]  o_data
+,   input logic [7:0]   i_data_A
+,   input logic [7:0]   i_data_B
+,   input logic         i_sel_op
+,   output logic [15:0] o_data
 
     // Second interface
 ,   input logic         i_clk_fast
@@ -16,7 +18,11 @@ module dut_test
 
     always_ff @(posedge i_clk) begin
         if (!i_reset) begin
-            o_data <= i_data;
+            if (i_sel_op) begin
+                o_data <= i_data_A + i_data_B;
+            end else begin
+                o_data <= i_data_A * i_data_B;
+            end
         end
         else begin
             o_data <= 0;

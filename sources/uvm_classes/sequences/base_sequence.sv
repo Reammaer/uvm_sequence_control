@@ -25,6 +25,7 @@ task base_sequence::body();
         // Create a new transaction
         base_transaction_h = base_transaction::type_id::create("base_transaction_h");
         // Start transaction
-        `uvm_do(base_transaction_h)
+        `uvm_do_with(base_transaction_h, 
+                    { i_sel_op == 1; } )
     end
 endtask: body

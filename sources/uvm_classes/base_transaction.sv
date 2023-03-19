@@ -3,8 +3,11 @@
 class base_transaction extends uvm_sequence_item;
     `uvm_object_utils(base_transaction)
 
-    randc logic [7:0]   i_data;
-    logic [7:0]         o_data;
+    randc logic [7:0]   i_data_A;
+    randc logic [7:0]   i_data_B;
+    randc logic         i_sel_op;
+
+    logic [15:0]        o_data;
 
     extern function new (string name = "");
 

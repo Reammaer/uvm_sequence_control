@@ -10,8 +10,10 @@ package uvm_class_pkg;
     typedef uvm_sequencer #(base_transaction) sequencer;
     typedef uvm_sequencer #(transaction_fast) sequencer_fast;
 
-    `include "uvm_classes/base_sequence.sv"
-    `include "uvm_classes/sequence_fast.sv"
+    `include "uvm_classes/sequences/base_sequence.sv"
+    `include "uvm_classes/sequences/base_sequence_nsel.sv"
+    `include "uvm_classes/sequences/run_all_sequences.sv"
+    `include "uvm_classes/sequences/sequence_fast.sv"
     `include "uvm_classes/driver.sv"
     `include "uvm_classes/driver_active.sv"
     `include "uvm_classes/driver_fast.sv"

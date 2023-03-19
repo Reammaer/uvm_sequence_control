@@ -32,7 +32,9 @@ task driver::run_phase(uvm_phase phase);
         @(posedge vif.clk)
             // Get a new transaction                         
             seq_item_port.get_next_item(base_transaction_h);
-            vif.i_data   <= base_transaction_h.i_data;
+            vif.i_data_A   <= base_transaction_h.i_data_A;
+            vif.i_data_B   <= base_transaction_h.i_data_B;
+            vif.i_sel_op   <= base_transaction_h.i_sel_op;
             // Waiting for the new data
             seq_item_port.item_done();
     end

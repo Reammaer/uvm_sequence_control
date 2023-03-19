@@ -42,7 +42,9 @@ module tb;
     // Slow part
         .i_clk          (clk                )
     ,   .i_reset        (_if.i_reset        )
-    ,   .i_data         (_if.i_data         )
+    ,   .i_data_A       (_if.i_data_A       )
+    ,   .i_data_B       (_if.i_data_B       )
+    ,   .i_sel_op       (_if.i_sel_op       )
     ,   .o_data         (_if.o_data         )
     // Fast part
     ,   .i_clk_fast     (clk_fast            )

@@ -2,9 +2,11 @@
 // Slow interface
 interface dut_if (input clk);
 
-    logic           i_reset    ;
-    logic [7:0]     i_data = 0 ;
-    logic [7:0]     o_data     ;
+    logic           i_reset         ;
+    logic [7:0]     i_data_A = 0    ;
+    logic [7:0]     i_data_B = 0    ;
+    logic           i_sel_op = 0    ;   
+    logic [15:0]    o_data          ;
 
 endinterface: dut_if
 

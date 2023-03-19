@@ -8,8 +8,8 @@ class base_test extends uvm_test;
     virtual dut_fast_if v_fast_if;
 
     // Sequence handle
-    base_sequence base_sequence_h;
-    sequence_fast sequence_fast_h;
+    run_all_sequences   run_all_sequences_h;
+    sequence_fast       sequence_fast_h;
 
     // Environment handle
     environment     env_h;
@@ -53,7 +53,7 @@ function void base_test::build_phase(uvm_phase phase);
     uvm_config_db#(virtual dut_if)::set(this, "*", "dut_if", vif);
     uvm_config_db#(virtual dut_fast_if)::set(this, "*", "dut_fast_if", v_fast_if);
     // Create new sequences
-    base_sequence_h = base_sequence::type_id::create("base_sequence_h"); 
+    run_all_sequences_h = run_all_sequences::type_id::create("run_all_sequences_h"); 
     sequence_fast_h = sequence_fast::type_id::create("sequence_fast_h");
 
 endfunction: build_phase
@@ -128,7 +128,7 @@ task base_test::run_phase(uvm_phase phase);
     fork
         // Slow transactions
         for (int i = 0; i < 10; i++) begin
-            base_sequence_h.start(env_h.agent_h.uvm_sequencer_h);
+            run_all_sequences_h.start(env_h.agent_h.uvm_sequencer_h);
         end
         // Fast transaction
         begin

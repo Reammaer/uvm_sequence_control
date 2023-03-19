@@ -59,14 +59,29 @@ function void scoreboard::build_phase(uvm_phase phase);
 endfunction: build_phase
 
 
-function void scoreboard::write_first(base_transaction pkg);    
-    if (pkg.o_data != pkg.i_data) begin
-        `uvm_error("scoreboard", 
-                    $sformatf("pkg.idata=%0d pkg.odata=%0d", pkg.i_data, pkg.o_data));
+function void scoreboard::write_first(base_transaction pkg);  
+    if (pkg.i_sel_op) begin
+        if (pkg.o_data != (pkg.i_data_A + pkg.i_data_B)) begin
+            `uvm_error("scoreboard", 
+                        $sformatf("pkg.i_data_A=%0d pkg.i_data_B=%0d pkg.odata=%0d", 
+                                    pkg.i_data_A, pkg.i_data_B, pkg.o_data));
+        end else begin
+            `uvm_info("scoreboard", 
+                        $sformatf("pkg.i_data_A=%0d pkg.i_data_B=%0d pkg.odata=%0d", 
+                                    pkg.i_data_A, pkg.i_data_B, pkg.o_data),
+                        UVM_HIGH)
+        end
     end else begin
-        `uvm_info("scoreboard", 
-                    $sformatf("pkg.idata=%0d pkg.odata=%0d", pkg.i_data, pkg.o_data),
-                    UVM_HIGH)
+        if (pkg.o_data != (pkg.i_data_A * pkg.i_data_B)) begin
+            `uvm_error("scoreboard", 
+                        $sformatf("pkg.i_data_A=%0d pkg.i_data_B=%0d pkg.odata=%0d", 
+                                    pkg.i_data_A, pkg.i_data_B, pkg.o_data));
+        end else begin
+            `uvm_info("scoreboard", 
+                        $sformatf("pkg.i_data_A=%0d pkg.i_data_B=%0d pkg.odata=%0d", 
+                                    pkg.i_data_A, pkg.i_data_B, pkg.o_data),
+                        UVM_HIGH)
+        end
     end
 
 endfunction: write_first
